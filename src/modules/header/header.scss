@@ -1,0 +1,7 @@
+@import "../../functions.scss";
+
+.header {
+  background: getDarken( #ccc);
+  padding: 5px;
+  margin: 0 0 (40px - getPart(150,5));
+}

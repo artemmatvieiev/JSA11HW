@@ -1,0 +1,42 @@
+/* 2.Создать файл scss, в котором будут храниться миксины:
+миксин @round(angle) должен генерировать код для округления углов с 
+заданным углом (по умолчанию - 10px);
+миксин @triangle должен генерировать треугольник, созданный на 
+псевдоэлементах (пример посмотреть можно здесь)
+создать миксин @triangle(direction) таким образом, чтобы при передаче туда 
+строки “up”/”left”/”down”/”right” вершина треугольника была направлена в 
+соответствующую сторону; по умолчанию вершина треугольника направлена вверх.
+Применить миксины на практике, импортировав их в другие scss файлы.
+*/
+
+@mixin round($angle: 10px) {
+  border-radius: $angle;
+}
+
+@mixin triangle($direction: "up") {
+  & {
+    position: relative;
+  }
+  &::after {
+    content: ''; 
+    position: absolute;
+    
+    border: 10px solid transparent;
+    @if $direction == "up" {
+      left: 10px; top: -30px;
+      border-bottom: 20px solid green;
+    }
+    @if $direction == "down" {
+      left: 10px; bottom: -30px;
+      border-top: 20px solid green;
+    }
+    @if $direction == "left" {
+      left: -30px; top: calc(50% - 10px);
+      border-right: 20px solid green;
+    }
+    @if $direction == "right" {
+      right: -30px; top: calc(50% - 10px);
+      border-left: 20px solid green;
+    }
+  }
+}

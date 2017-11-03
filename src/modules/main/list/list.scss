@@ -1,0 +1,39 @@
+@import "../../../mixins.scss";
+
+.list {
+  color: #fff;
+  list-style: none;
+  text-align: center;
+  padding: 0;
+  li {
+    @include round(5px);
+    margin: 0 0 10px; 
+  }
+}
+/* 3.Сгенерировать 10 классов для задания ширины:
+
+.width1 {width: 10%;}
+.width2 {width: 20%;}
+.width3 {width: 30%;}
+…
+
+Использовать циклы SASS. */
+
+@for $i from 1 through 20 {
+  .width#{$i} { width: 5% * $i; }
+}
+
+/* 4. Сгенерировать css код, который бы для двадцати li генерировал разный 
+бэкграунд:
+li:nth-child(1) {background: #64c8ff;}
+li:nth-child(2) {background: #5ebfef;}
+…
+Использовать циклы SASS. Для генерации цветов можно воспользоваться, 
+например, функцией rgb.
+*/
+
+@for $i from 1 through 20 {
+  li:nth-child(#{$i}) { 
+    background: rgb($i*8, $i*2, $i*10); 
+  }
+}
